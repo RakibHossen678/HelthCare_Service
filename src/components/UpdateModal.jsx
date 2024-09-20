@@ -1,8 +1,9 @@
-import  { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { FaEdit } from "react-icons/fa";
+import { getServices, updateService } from "../utility/localstorage";
 
-const UpdateModal = () => {
+const UpdateModal = ({ setServices, id }) => {
   const [modalOpen, setModalOpen] = useState(false);
-
   const trigger = useRef(null);
   const modal = useRef(null);
 
@@ -32,53 +33,96 @@ const UpdateModal = () => {
     return () => document.removeEventListener("keydown", keyHandler);
   });
 
+  const services = getServices();
+  const filteredService = services.filter((service) => service.id === id);
+
+  const handleForm = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const description = form.desc.value;
+    const price = form.price.value;
+    const updatedService = {
+      id: filteredService[0].id,
+      name,
+      description,
+      price,
+    };
+    updateService(id, updatedService);
+    const storedServices = getServices();
+    setServices(storedServices);
+    setModalOpen(false);
+    form.reset();
+  };
+
   return (
     <>
-      <div className="container mx-auto py-20">
+      <div className=" ">
         <button
           ref={trigger}
           onClick={() => setModalOpen(true)}
-          className={`rounded-full bg-primary px-6 py-3 text-base font-medium text-white`}
+          className={`flex items-center text-blue-500 hover:text-blue-700 `}
         >
-          Update Services
+          <FaEdit className="mr-2" />
+          Update
         </button>
         <div
-          className={`fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 ${
+          className={`fixed left-0 top-0 flex h-full min-h-screen bg-black bg-opacity-70 w-full items-center justify-center bg-dark/90 px-4 py-5 ${
             modalOpen ? "block" : "hidden"
           }`}
         >
           <div
             ref={modal}
             onFocus={() => setModalOpen(true)}
-            onBlur={() => setModalOpen(false)}
-            className="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12 text-center dark:bg-dark-2 md:px-[70px] md:py-[60px]"
+            className="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12   md:px-[70px] md:py-[60px]"
           >
-            <h3 className="pb-[18px] text-xl font-semibold text-dark dark:text-white sm:text-2xl">
-              Your Message Sent Successfully
-            </h3>
-            <span
-              className={`mx-auto mb-6 inline-block h-1 w-[90px] rounded bg-primary`}
-            ></span>
-            <p className="mb-10 text-base leading-relaxed text-body-color dark:text-dark-6">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the  standard dummy text
-              ever since
-            </p>
-            <div className="-mx-3 flex flex-wrap">
-              <div className="w-1/2 px-3">
+            <h1 className="text-3xl pb-4 text-center font-semibold">
+              Update Service
+            </h1>
+            <form onSubmit={handleForm}>
+              <div className="w-full mt-4">
+                <label>Name</label>
+                <input
+                  defaultValue={filteredService[0]?.name}
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400  focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                  type="text"
+                  name="name"
+                  placeholder="Enter Service Name"
+                  aria-label="Service Name"
+                />
+              </div>
+              <div className="w-full mt-4">
+                <label>Description</label>
+                <input
+                  defaultValue={filteredService[0]?.description}
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400  focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                  type="text"
+                  name="desc"
+                  placeholder="Enter Description"
+                  aria-label="Description"
+                />
+              </div>
+              <div className="w-full mt-4">
+                <label>Price</label>
+                <input
+                  defaultValue={filteredService[0]?.price}
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                  type="number"
+                  name="price"
+                  placeholder="Enter Price"
+                  aria-label="Price"
+                />
+              </div>
+
+              <div className="w-1/2 mx-auto px-3 mt-6">
                 <button
-                  onClick={() => setModalOpen(false)}
-                  className="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white dark:text-white"
+                  type="submit"
+                  className="block w-full rounded-md border border-primary  p-3 text-center text-base font-medium text-white bg-blue-600 transition hover:bg-blue-dark"
                 >
-                  Cancel
+                  Update Service
                 </button>
               </div>
-              <div className="w-1/2 px-3">
-                <button className="block w-full rounded-md border border-primary bg-primary p-3 text-center text-base font-medium text-white transition hover:bg-blue-dark">
-                  <a href={`/#`}> View Details </a>
-                </button>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

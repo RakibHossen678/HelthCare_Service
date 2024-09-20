@@ -19,6 +19,18 @@ export const addService = (newService) => {
   localStorage.setItem("services", JSON.stringify(services));
 };
 
+//update Service
+
+export const updateService = (id, updatedService) => {
+  console.log(id);
+  console.log(updatedService);
+  const services = getServices();
+  const updatedServiceArray = services.map((service) =>
+    service.id === id ? { ...service, ...updatedService } : service
+  );
+  localStorage.setItem("services", JSON.stringify(updatedServiceArray));
+};
+
 //delete
 
 export const deleteServices = (id) => {

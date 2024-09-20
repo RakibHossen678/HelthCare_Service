@@ -38,6 +38,7 @@ function App() {
               onUpdate={handleUpdate}
               onDelete={handleDelete}
               service={service}
+              setServices={setServices}
             />
           ))}
         </div>
