@@ -9,7 +9,7 @@ const Navbar = () => {
         <li className="text-[#020043] font-medium hover:text-blue-600">
           Services
         </li>
-        <li className="text-[#020043] font-medium hover:text-blue-600">Blog</li>
+        <li className="text-[#020043] font-medium hover:text-blue-600">Blogs</li>
         <li className="text-[#020043] font-medium hover:text-blue-600">
           About Us
         </li>
