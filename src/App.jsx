@@ -28,10 +28,10 @@ function App() {
         Healthcare Services
       </h1>
       <div className=" flex justify-end items-center">
-        <AddModal />
+        <AddModal setServices={setServices} />
       </div>
       {services.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
           {services.map((service) => (
             <Service
               key={service.id}
@@ -42,7 +42,9 @@ function App() {
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-600">No services available.</p>
+        <p className="text-center text-gray-600 text-xl">
+          No services available.
+        </p>
       )}
     </main>
   );
