@@ -4,7 +4,7 @@ import UpdateModal from "./UpdateModal";
 
 function Service({ service, onDelete, setServices }) {
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow-lg transition-shadow duration-500 ease-in-out">
+    <div className="bg-purple-50 rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow-lg transition-shadow duration-500 ease-in-out">
       <h2 className="text-2xl font-semibold text-gray-800 mb-3">
         {service.name}
       </h2>

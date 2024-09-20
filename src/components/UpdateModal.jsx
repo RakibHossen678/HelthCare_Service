@@ -100,9 +100,9 @@ const UpdateModal = ({ setServices, id }) => {
                     defaultValue={filteredService[0]?.description}
                     name="desc"
                     type="text"
+                    required
                     className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                     placeholder="Enter Description"
-                    required
                   />
                 </div>
 

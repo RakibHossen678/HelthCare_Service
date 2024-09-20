@@ -82,6 +82,7 @@ const AddModal = ({ setServices }) => {
                 <label className="block text-gray-700 font-medium">Name</label>
                 <input
                   className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none focus:ring focus:ring-opacity-50 transition"
+                  required
                   type="text"
                   name="name"
                   placeholder="Enter Service Name"
@@ -94,6 +95,7 @@ const AddModal = ({ setServices }) => {
                 </label>
                 <input
                   className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none focus:ring focus:ring-opacity-50 transition"
+                  required
                   type="text"
                   name="desc"
                   placeholder="Enter Description"
@@ -104,6 +106,7 @@ const AddModal = ({ setServices }) => {
                 <label className="block text-gray-700 font-medium">Price</label>
                 <input
                   className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none focus:ring focus:ring-opacity-50 transition"
+                  required
                   type="number"
                   name="price"
                   placeholder="Enter Price"

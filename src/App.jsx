@@ -23,7 +23,7 @@ function App() {
   };
 
   return (
-    <main className="container mx-auto p-4 lg:p-10 md:p-6 ">
+    <main className="container  mx-auto p-4 lg:p-10 md:p-6 ">
       <section className="text-center mb-10">
         <h1 className="text-4xl font-extrabold text-gray-800 leading-tight mb-4">
           Healthcare Services

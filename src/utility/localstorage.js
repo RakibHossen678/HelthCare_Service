@@ -92,18 +92,18 @@ const defaultServices = [
     description: "Routine care during pregnancy",
     price: "120",
   },
-  // {
-  //   id: 11,
-  //   name: "Nutrition Consultation",
-  //   description: "Personalized dietary advice",
-  //   price: "65",
-  // },
-  // {
-  //   id: 12,
-  //   name: "Skin Care Treatment",
-  //   description: "Dermatology consultation for skin issues",
-  //   price: "85",
-  // },
+  {
+    id: 11,
+    name: "Nutrition Consultation",
+    description: "Personalized dietary advice",
+    price: "65",
+  },
+  {
+    id: 12,
+    name: "Skin Care Treatment",
+    description: "Dermatology consultation for skin issues",
+    price: "85",
+  },
   // {
   //   id: 13,
   //   name: "Hearing Test",
