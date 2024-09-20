@@ -1,5 +1,5 @@
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-
+import PropTypes from "prop-types";
 function Service({ service, onUpdate, onDelete }) {
   return (
     <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
@@ -8,7 +8,6 @@ function Service({ service, onUpdate, onDelete }) {
       <p className="text-green-500 font-semibold">{service.price}</p>
 
       <div className="flex justify-end space-x-4 mt-4">
-
         {/* Update Button */}
         <button
           onClick={() => onUpdate(service.id)}
@@ -30,5 +29,11 @@ function Service({ service, onUpdate, onDelete }) {
     </div>
   );
 }
+
+Service.propTypes = {
+  service: PropTypes.object,
+  onUpdate: PropTypes.func,
+  onDelete: PropTypes.func,
+};
 
 export default Service;

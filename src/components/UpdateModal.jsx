@@ -61,7 +61,7 @@ const UpdateModal = () => {
             ></span>
             <p className="mb-10 text-base leading-relaxed text-body-color dark:text-dark-6">
               Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
+              industry. Lorem Ipsum has been the  standard dummy text
               ever since
             </p>
             <div className="-mx-3 flex flex-wrap">
