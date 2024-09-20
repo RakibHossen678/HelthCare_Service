@@ -1,20 +1,24 @@
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import PropTypes from "prop-types";
 import UpdateModal from "./UpdateModal";
+
 function Service({ service, onDelete, setServices }) {
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-      <h2 className="text-xl font-bold mb-2">{service.name}</h2>
-      <p className="text-gray-600 mb-2">{service.description}</p>
-      <p className="text-green-500 font-semibold">${service.price}</p>
+    <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow-lg transition-shadow duration-500 ease-in-out">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-3">
+        {service.name}
+      </h2>
+      <p className="text-gray-600 mb-3">{service.description}</p>
+      <p className="text-lg font-medium text-green-600">${service.price}</p>
 
-      <div className="flex justify-end space-x-4 mt-4">
+      <div className="flex justify-between items-center mt-5">
         {/* Update Button */}
         <UpdateModal id={service.id} setServices={setServices} />
+
         {/* Delete Button */}
         <button
           onClick={() => onDelete(service.id)}
-          className="flex items-center text-red-500 hover:text-red-700"
+          className="flex items-center text-red-600 hover:text-red-800 font-medium transition-colors duration-200"
         >
           <FaTrashAlt className="mr-2" />
           Delete
@@ -26,7 +30,6 @@ function Service({ service, onDelete, setServices }) {
 
 Service.propTypes = {
   service: PropTypes.object,
-  onUpdate: PropTypes.func,
   onDelete: PropTypes.func,
   setServices: PropTypes.func,
 };

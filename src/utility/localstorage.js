@@ -13,7 +13,6 @@ export const getServices = () => {
 //add service
 
 export const addService = (newService) => {
-  console.log(newService);
   const services = getServices();
   services.push(newService);
   localStorage.setItem("services", JSON.stringify(services));
@@ -22,8 +21,6 @@ export const addService = (newService) => {
 //update Service
 
 export const updateService = (id, updatedService) => {
-  console.log(id);
-  console.log(updatedService);
   const services = getServices();
   const updatedServiceArray = services.map((service) =>
     service.id === id ? { ...service, ...updatedService } : service

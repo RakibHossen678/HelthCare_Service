@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { getServices, updateService } from "../utility/localstorage";
+import PropTypes from "prop-types";
 
 const UpdateModal = ({ setServices, id }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const trigger = useRef(null);
   const modal = useRef(null);
 
-  // close on click outside
+  // Close on click outside
   useEffect(() => {
     const clickHandler = ({ target }) => {
       if (!modal.current) return;
@@ -23,7 +24,7 @@ const UpdateModal = ({ setServices, id }) => {
     return () => document.removeEventListener("click", clickHandler);
   });
 
-  // close if the esc key is pressed
+  // Close if the escape key is pressed
   useEffect(() => {
     const keyHandler = ({ keyCode }) => {
       if (!modalOpen || keyCode !== 27) return;
@@ -57,77 +58,92 @@ const UpdateModal = ({ setServices, id }) => {
 
   return (
     <>
-      <div className=" ">
+      <div className="">
         <button
           ref={trigger}
           onClick={() => setModalOpen(true)}
-          className={`flex items-center text-blue-500 hover:text-blue-700 `}
+          className="flex items-center text-blue-500 hover:text-blue-700 transition duration-300 ease-in-out"
         >
           <FaEdit className="mr-2" />
           Update
         </button>
-        <div
-          className={`fixed left-0 top-0 flex h-full min-h-screen bg-black bg-opacity-70 w-full items-center justify-center bg-dark/90 px-4 py-5 ${
-            modalOpen ? "block" : "hidden"
-          }`}
-        >
-          <div
-            ref={modal}
-            onFocus={() => setModalOpen(true)}
-            className="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12   md:px-[70px] md:py-[60px]"
-          >
-            <h1 className="text-3xl pb-4 text-center font-semibold">
-              Update Service
-            </h1>
-            <form onSubmit={handleForm}>
-              <div className="w-full mt-4">
-                <label>Name</label>
-                <input
-                  defaultValue={filteredService[0]?.name}
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400  focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                  type="text"
-                  name="name"
-                  placeholder="Enter Service Name"
-                  aria-label="Service Name"
-                />
-              </div>
-              <div className="w-full mt-4">
-                <label>Description</label>
-                <input
-                  defaultValue={filteredService[0]?.description}
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400  focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                  type="text"
-                  name="desc"
-                  placeholder="Enter Description"
-                  aria-label="Description"
-                />
-              </div>
-              <div className="w-full mt-4">
-                <label>Price</label>
-                <input
-                  defaultValue={filteredService[0]?.price}
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                  type="number"
-                  name="price"
-                  placeholder="Enter Price"
-                  aria-label="Price"
-                />
-              </div>
 
-              <div className="w-1/2 mx-auto px-3 mt-6">
+        {modalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 px-4 py-5">
+            <div
+              ref={modal}
+              className="w-full max-w-lg rounded-lg bg-white px-8 py-10 shadow-lg md:px-12"
+            >
+              <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+                Update Service
+              </h1>
+              <form onSubmit={handleForm}>
+                <div className="mb-4">
+                  <label className="block text-gray-600 font-medium mb-1">
+                    Service Name
+                  </label>
+                  <input
+                    defaultValue={filteredService[0]?.name}
+                    name="name"
+                    type="text"
+                    className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                    placeholder="Enter Service Name"
+                    required
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label className="block text-gray-600 font-medium mb-1">
+                    Description
+                  </label>
+                  <input
+                    defaultValue={filteredService[0]?.description}
+                    name="desc"
+                    type="text"
+                    className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                    placeholder="Enter Description"
+                    required
+                  />
+                </div>
+
+                <div className="mb-6">
+                  <label className="block text-gray-600 font-medium mb-1">
+                    Price
+                  </label>
+                  <input
+                    defaultValue={filteredService[0]?.price}
+                    name="price"
+                    type="number"
+                    className="w-full px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                    placeholder="Enter Price"
+                    required
+                  />
+                </div>
+
                 <button
                   type="submit"
-                  className="block w-full rounded-md border border-primary  p-3 text-center text-base font-medium text-white bg-blue-600 transition hover:bg-blue-dark"
+                  className="w-full bg-blue-600 text-white font-medium py-2 rounded-lg hover:bg-blue-700 transition duration-300"
                 >
                   Update Service
                 </button>
-              </div>
-            </form>
+              </form>
+              <button
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+                onClick={() => setModalOpen(false)}
+              >
+                ×
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );
+};
+
+UpdateModal.propTypes = {
+  id: PropTypes.number,
+  setServices: PropTypes.func,
 };
 
 export default UpdateModal;

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import { addService, getServices } from "../utility/localstorage";
+import PropTypes from "prop-types";
 
 const AddModal = ({ setServices }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -60,28 +61,27 @@ const AddModal = ({ setServices }) => {
         <button
           ref={trigger}
           onClick={() => setModalOpen(true)}
-          className={`rounded-full bg-blue-600  px-6 py-3 text-base font-medium text-white mb-5 flex  items-center gap-2 `}
+          className={`rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-base font-medium text-white mb-5 flex items-center gap-2 shadow-md hover:shadow-lg transition duration-300 ease-in-out`}
         >
           <FaPlusCircle className="" size={22} /> Add Services
         </button>
         <div
-          className={`fixed left-0 top-0 flex h-full min-h-screen bg-black bg-opacity-70 w-full items-center justify-center bg-dark/90 px-4 py-5 ${
-            modalOpen ? "block" : "hidden"
+          className={`fixed inset-0 flex h-full w-full bg-black bg-opacity-70 items-center justify-center px-4 py-5 transition-all duration-300 ease-in-out ${
+            modalOpen ? "visible opacity-100" : "invisible opacity-0"
           }`}
         >
           <div
             ref={modal}
-            onFocus={() => setModalOpen(true)}
-            className="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12   md:px-[70px] md:py-[60px]"
+            className="relative w-full max-w-[570px] rounded-[20px] bg-white shadow-lg px-8 py-12 transition-all transform md:px-[70px] md:py-[60px]"
           >
-            <h1 className="text-3xl pb-4 text-center font-semibold">
+            <h1 className="text-3xl pb-4 text-center font-semibold text-gray-800">
               Add Service
             </h1>
             <form onSubmit={handleForm}>
               <div className="w-full mt-4">
-                <label>Name</label>
+                <label className="block text-gray-700 font-medium">Name</label>
                 <input
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400  focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none focus:ring focus:ring-opacity-50 transition"
                   type="text"
                   name="name"
                   placeholder="Enter Service Name"
@@ -89,9 +89,11 @@ const AddModal = ({ setServices }) => {
                 />
               </div>
               <div className="w-full mt-4">
-                <label>Description</label>
+                <label className="block text-gray-700 font-medium">
+                  Description
+                </label>
                 <input
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400  focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none focus:ring focus:ring-opacity-50 transition"
                   type="text"
                   name="desc"
                   placeholder="Enter Description"
@@ -99,9 +101,9 @@ const AddModal = ({ setServices }) => {
                 />
               </div>
               <div className="w-full mt-4">
-                <label>Price</label>
+                <label className="block text-gray-700 font-medium">Price</label>
                 <input
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 focus:outline-none focus:ring focus:ring-opacity-50 transition"
                   type="number"
                   name="price"
                   placeholder="Enter Price"
@@ -109,10 +111,10 @@ const AddModal = ({ setServices }) => {
                 />
               </div>
 
-              <div className="w-1/2 mx-auto px-3 mt-6">
+              <div className="w-full mt-6">
                 <button
                   type="submit"
-                  className="block w-full rounded-md border border-primary  p-3 text-center text-base font-medium text-white bg-blue-600 transition hover:bg-blue-dark"
+                  className="block w-full rounded-lg bg-blue-600 text-white font-semibold p-3 text-center shadow-md hover:bg-blue-700 transition-all duration-300 ease-in-out"
                 >
                   Add Service
                 </button>
@@ -124,5 +126,7 @@ const AddModal = ({ setServices }) => {
     </>
   );
 };
-
+AddModal.propTypes = {
+  setServices: PropTypes.func,
+};
 export default AddModal;
