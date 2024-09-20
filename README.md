@@ -1,8 +1,9 @@
-# React + Vite
+#  HealthCare Service
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- [HealthCare Service](https://swc.rs/) 
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ ```bash
+   git clone https://github.com/RakibHossen678/HelthCare_Service.git
+   cd HelthCare_Service
+   npm install
+   npm run dev 
